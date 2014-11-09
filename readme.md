@@ -4,13 +4,16 @@ This library is a work in progress, and as such is missing some features.
 
 ## Not Yet Implemented
 
+The following features are on the roadmap:
+
 - Type checking, in case not given an object.
 - The reverse operation to `crystallize()` (probably `crystallize.smash()`)
 - camelCase delimiters.
 - Phrase-based excludes
+- How to not over-reverse when reversing, for values that are objects.
 - Upload it to the npms
 
-Strikethroughed lines below describe features that are planned but not yet written.
+Strikethroughed lines below describe features that are planned but not yet implemented. Everything else is implemented.
 
 ## Usage
 
@@ -56,15 +59,15 @@ nestedBob:
 
 Returns the nested version of `flatObject`. Pass in an optional options object.
 
-*Note:* Object key order will not be preserved. If anything keys will now be ordered lexicographically. File an issue describing your use case if you need object key order preserved.
+*Note:* Object key order will not be preserved. Rather, keys will end up being lexicographically ordered. File an issue describing your use case if you need object key order preserved.
 
 **Options**
 
 - **delimiter**  
-String value that specifies the delimiter between words. `'_'` and `'.'` are common. ~~Multi-character delimiters like `'__'` (double underscore) are allowed as well. Finally, the following string shortcut values also work: `'camelCase'`, `'snake_case'`. (default: `'_'`)~~
+String value that specifies the delimiter between words. `'_'` and `'.'` are common. ~~Multi-character delimiters like `'__'` (double underscore) are allowed as well. Finally, the following string shortcut values also work: `'camelCase'`, `'snake_case'`.~~ (default: `'_'`)
 
 - **excludes**  
-Array of prefix words excluded from factorization. One common example is 'is'. See example below. ~~For excluded *phrases*, either supply the phrase in the appropriate delimitation standard (e.g. `'stateOf'` when delimiter is `'camelCase'`), or supply the phrase an array of words (e.g. `['state', 'of']`, has the advantage of being delimiter-agnostic).~~ Excludes only apply if they are the first word of keys of the tree / one of its subtrees.
+Array of prefix words excluded from factorization. One common example is 'is'. See example below. ~~For excluded *phrases*, either supply the phrase in the appropriate delimitation standard (e.g. `'stateOf'` when delimiter is `'camelCase'`), or supply the phrase an array of words (e.g. `['state', 'of']`, has the advantage of being delimiter-agnostic).~~ Excludes only apply if they are the first word of keys of the tree / one of its subtrees. (default: `[]`)
 
 ### Example of Exclusion
 
@@ -101,7 +104,7 @@ Result:
 }
 */
 
-/* This section not implemented yet.
+/* This section not implemented yet. Imagine strikethroughs.
 // Exclusion of phrases.
 factorize(data, {exclude: ['is', 'has', 'state_of']}); // Assuming '_' delimiter.
 factorize(data, {exclude: ['is', 'has', 'stateOf']}); // Assuming camelCase delimiter.
