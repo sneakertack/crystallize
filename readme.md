@@ -1,3 +1,10 @@
+## Not Yet Implemented
+
+- Write this readme
+- camelCase delimiters
+- prefix excludes
+- no-crystallize if prefix = an entire key
+- reverse operation (frag / smash / shatter)
 
 ## Options
 
