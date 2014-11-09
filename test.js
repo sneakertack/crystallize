@@ -20,6 +20,6 @@ tests.push({
 });
 
 tests.forEach(function (test) {
-  var result = crystallize(test);
+  var result = crystallize(test, {excludes: ['is']});
   console.log(result);
-})
+});
