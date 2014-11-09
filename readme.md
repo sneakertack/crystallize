@@ -1,16 +1,64 @@
+`crystallize()` turns a flat data object into a nested, tree-like object. Keys get automatically grouped together if they share common prefixes.
+
+This library is a work in progress, and as such is missing some features.
+
 ## Not Yet Implemented
 
-- Type checking, in case not an object.
-- Write this readme
-- camelCase delimiters
-- prefix phrase excludes
-- reverse operation (frag / smash / shatter)
-- note that does not preserve object order
-- upload it to the npms
+- Type checking, in case not given an object.
+- The reverse operation to `crystallize()` (probably `crystallize.smash()`)
+- camelCase delimiters.
+- Phrase-based excludes
+- Upload it to the npms
 
-Strikethroughed lines describe features that are planned but have not been implemented yet.
+Strikethroughed lines below describe features that are planned but not yet written.
 
-## Options
+## Usage
+
+```js
+var crystallize = require('crystallize');
+
+// The data to crystallize.
+var flatBob = {
+  id: 1,
+  name: 'bob',
+  content_description: 'bob is a traveling salesman',
+  content_tagline: 'the handsomest salesman in the world',
+  vehicles_air: 'diy quadrocopter',
+  vehicles_land_bike: 'fixie',
+  vehicles_land_car: 'jalopy'
+};
+
+var nestedBob = crystallize(flatBob);
+
+/*
+nestedBob:
+{
+  id: 1,
+  name: 'bob',
+  content: {
+    description: 'bob is a traveling salesman',
+    tagline: 'the handsomest salesman in the world'
+  },
+  vehicles: {
+    air: 'diy quadrocopter',
+    land: {
+      bike: 'fixie',
+      car: 'jalopy' 
+    }
+  }
+}
+ */
+```
+
+## API
+
+### crystallize(flatObject, [opts])
+
+Returns the nested version of `flatObject`. Pass in an optional options object.
+
+*Note:* Object key order will not be preserved. If anything keys will now be ordered lexicographically. File an issue describing your use case if you need object key order preserved.
+
+**Options**
 
 - **delimiter**  
 String value that specifies the delimiter between words. `'_'` and `'.'` are common. ~~Multi-character delimiters like `'__'` (double underscore) are allowed as well. Finally, the following string shortcut values also work: `'camelCase'`, `'snake_case'`. (default: `'_'`)~~
@@ -53,12 +101,14 @@ Result:
 }
 */
 
+/* This section not implemented yet.
 // Exclusion of phrases.
 factorize(data, {exclude: ['is', 'has', 'state_of']}); // Assuming '_' delimiter.
 factorize(data, {exclude: ['is', 'has', 'stateOf']}); // Assuming camelCase delimiter.
 factorize(data, {exclude: ['is', 'has', ['state', 'of']]});
+*/
 ```
 
 ## Example Use Cases
 
-- Build your own Object Relational Mapper: Turn flat data from relational database tables into a more object-ey form.
+- Build your own Object Relational Mapper: Turn flat data from relational database tables into a nested form more appropriate for JS use. (caveat: likely to conflict if some of your relational table fields are JSON)

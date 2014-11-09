@@ -12,6 +12,7 @@ tests.push({
   multi_word_prefix_bob: 456,
   nesty_mesty_lolitron_mcnugget: true,
   nesty_mesty_megatron: false,
+  nesty_cardboard: 'yes',
   fully_consumed: 0,
   fully_consumed_sidekick: 1,
   fully_consumed_butler: 2,

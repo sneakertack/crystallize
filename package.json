@@ -1,21 +1,21 @@
 {
   "name": "crystallize",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Turn a flat object into a nested tree-like one, based on common prefixes amongst its keys.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node try.js"
   },
   "keywords": [
     "crystallize",
-    "crystallise"
+    "crystallise",
     "object",
     "flat",
     "unflatten",
     "nested",
     "tree",
     "keys",
-    "hierarchy"
+    "hierarchy",
     "delimiter",
     "factorize",
     "curdle"
