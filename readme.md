@@ -1,10 +1,11 @@
 ## Not Yet Implemented
 
+- Type checking, in case not an object.
 - Write this readme
 - camelCase delimiters
 - prefix excludes
-- no-crystallize if prefix = an entire key
 - reverse operation (frag / smash / shatter)
+- note that does not preserve object order
 
 ## Options
 
