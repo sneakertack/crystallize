@@ -1,4 +1,4 @@
-`crystallize()` turns a flat data object into a nested, tree-like object. Keys get automatically grouped together if they share common prefixes.
+`crystallize()` turns a flat data object into a nested, tree-like object. Keys get automatically grouped together if they share matching prefixes.
 
 ## Status
 
