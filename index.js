@@ -3,6 +3,10 @@
 module.exports = crystallize;
 
 function crystallize(source, options) {
+  // Basic type checking.
+  if (source === null || !['object', 'function'].some(function (type) {return typeof source === type;})) throw new TypeError('Expected an object but got type '+(source === null ? 'null' : typeof source)+' instead.');
+
+  // Config defaulting.
   options = options || {};
   options.delimiter = options.delimiter || '_';
   options.excludes = options.excludes || [];
@@ -61,20 +65,18 @@ function crystallize(source, options) {
   return result;
 
   /**
-   * Customized helper split and join functions, based on delimiter.
+   * HELPER FUNCTIONS
    */
 
+   // Customized split and join functions, based on delimiter.
   function split(string) {
     return string.split(camelPascalMode ? (/(?=[A-Z])/) : options.delimiter);
   }
-
   function join(array) {
     return array.join(camelPascalMode ? '' : options.delimiter);
   }
 
-  /**
-   * Capitalise or decapitalise new keys in camel/pascal mode.
-   */
+  // Capitalise or decapitalise new keys in camel/pascal mode.
   function saneCase(str) {
     if (!camelPascalMode) return str;
     if (options.delimiter.toLowerCase() === 'camelcase') return str.substring(0, 1).toLowerCase() + str.substring(1);

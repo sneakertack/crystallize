@@ -4,7 +4,6 @@
 
 This library is approximately 80% complete. The following features remain on the roadmap:
 
-- Type checking, in case not given an object.
 - The reverse operation to `crystallize()` (probably `crystallize.smash()`)
 - Phrase-based excludes
 - How to not over-reverse when reversing, for values that are objects.
