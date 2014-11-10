@@ -6,6 +6,7 @@ function crystallize(source, options) {
   options = options || {};
   options.delimiter = options.delimiter || '_';
   options.excludes = options.excludes || [];
+  var camelPascalMode = ['camelcase', 'pascalcase'].some(function (x) {return options.delimiter.toLowerCase() === x;});
 
   // Extract keys into a format for manipulation.
   var keys = Object.keys(source).sort(); // Lexicographic sorting arranges the keys, ensures that commonly prefixed keys will be next to each other.
@@ -46,7 +47,7 @@ function crystallize(source, options) {
         } else { // No fully consumed keys, proceed to crystallize.
           var nestedResult = {};
           uncommonFragments.forEach(function (fragment) {
-            nestedResult[fragment] = source[join([prefix, fragment])];
+            nestedResult[saneCase(fragment)] = source[join([prefix, fragment])];
           });
 
           result[prefix] = crystallize(nestedResult, options); // Recursive time. Nest until impossible.
@@ -64,10 +65,20 @@ function crystallize(source, options) {
    */
 
   function split(string) {
-    return string.split(options.delimiter);
+    return string.split(camelPascalMode ? (/(?=[A-Z])/) : options.delimiter);
   }
 
   function join(array) {
-    return array.join(options.delimiter);
+    return array.join(camelPascalMode ? '' : options.delimiter);
+  }
+
+  /**
+   * Capitalise or decapitalise new keys in camel/pascal mode.
+   */
+  function saneCase(str) {
+    if (!camelPascalMode) return str;
+    if (options.delimiter.toLowerCase() === 'camelcase') return str.substring(0, 1).toLowerCase() + str.substring(1);
+    if (options.delimiter.toLowerCase() === 'pascalcase') return str.substring(0, 1).toUpperCase() + str.substring(1);
+    throw new Error('Strange edge case with saneCase().');
   }
 }

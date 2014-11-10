@@ -1,19 +1,16 @@
 `crystallize()` turns a flat data object into a nested, tree-like object. Keys get automatically grouped together if they share common prefixes.
 
-This library is a work in progress, and as such is missing some features.
+## Status
 
-## Not Yet Implemented
-
-The following features are on the roadmap:
+This library is approximately 80% complete. The following features remain on the roadmap:
 
 - Type checking, in case not given an object.
 - The reverse operation to `crystallize()` (probably `crystallize.smash()`)
-- camelCase delimiters.
 - Phrase-based excludes
 - How to not over-reverse when reversing, for values that are objects.
 - Upload it to the npms
 
-Strikethroughed lines below describe features that are planned but not yet implemented. Everything else is implemented.
+Strikethroughed lines below describe features that are planned but not yet implemented. Everything else works.
 
 ## Usage
 
@@ -64,7 +61,7 @@ Returns the nested version of `flatObject`. Pass in an optional options object.
 **Options**
 
 - **delimiter**  
-String value that specifies the delimiter between words. `'_'` and `'.'` are common. ~~Multi-character delimiters like `'__'` (double underscore) are allowed as well. Finally, the following string shortcut values also work: `'camelCase'`, `'snake_case'`.~~ (default: `'_'`)
+String value that specifies the delimiter between words. `'_'` and `'.'` are common. ~~Multi-character delimiters like `'__'` (double underscore) are allowed as well.~~ To delimit by PascalCase/camelCase, supply either `'pascalcase'` or `'camelcase'`. (default: `'_'`)
 
 - **excludes**  
 Array of prefix words excluded from factorization. One common example is 'is'. See example below. ~~For excluded *phrases*, either supply the phrase in the appropriate delimitation standard (e.g. `'stateOf'` when delimiter is `'camelCase'`), or supply the phrase an array of words (e.g. `['state', 'of']`, has the advantage of being delimiter-agnostic).~~ Excludes only apply if they are the first word of keys of the tree / one of its subtrees. (default: `[]`)
@@ -115,3 +112,10 @@ factorize(data, {exclude: ['is', 'has', ['state', 'of']]});
 ## Example Use Cases
 
 - Build your own Object Relational Mapper: Turn flat data from relational database tables into a nested form more appropriate for JS use. (caveat: likely to conflict if some of your relational table fields are JSON)
+
+## Library Edge Cases
+
+These situations usually shouldn't be happening. But for the sake of completeness...
+
+- **When I use the camelCase of PascalCase delimiter, what happens if my source object has a mix of both PascalCase (capitalized first character) and camelCase (uncapitalized first character) keys?**  
+The first characters are not modified, so the first level of the resulting object will still contain a mix of PascalCase and camelCase keys. However, the keys of any nested branches will be (un)capitalized to follow the style you dictated for your delimiter (this already happens in a normal situation).
