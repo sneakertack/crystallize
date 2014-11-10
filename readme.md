@@ -111,11 +111,11 @@ factorize(data, {exclude: ['is', 'has', ['state', 'of']]});
 
 ## Example Use Cases
 
-- Build your own Object Relational Mapper: Turn flat data from relational database tables into a nested form more appropriate for JS use. (caveat: likely to conflict if some of your relational table fields are JSON)
+- Build your own Object Relational Mapper: Turn flat data from relational database tables into a nested form more appropriate for JS use. (caveat: may conflict if some of your relational table fields store JSON objects)
 
 ## Library Edge Cases
 
 These situations usually shouldn't be happening. But for the sake of completeness...
 
-- **When I use the camelCase of PascalCase delimiter, what happens if my source object has a mix of both PascalCase (capitalized first character) and camelCase (uncapitalized first character) keys?**  
-The first characters are not modified, so the first level of the resulting object will still contain a mix of PascalCase and camelCase keys. However, the keys of any nested branches will be (un)capitalized to follow the style you dictated for your delimiter (this already happens in a normal situation).
+- **When I use the camelCase or PascalCase delimiter, what happens if my source object has a mix of both PascalCase (capitalized first character) and camelCase (uncapitalized first character) keys?**  
+First characters remain unmodified, so the first level of the resulting object will still contain a mix of PascalCase and camelCase keys. However, the keys of any nested branches will be capitalized (or uncapitalized) to follow the style you dictated for your delimiter (this is already happening in a normal situation).
