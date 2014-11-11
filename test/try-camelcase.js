@@ -1,4 +1,4 @@
-var crystallize = require('./index.js');
+var crystallize = require('../index.js');
 
 var tests = [];
 
