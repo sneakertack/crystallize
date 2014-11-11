@@ -2,10 +2,9 @@
 
 ## Status
 
-This library is approximately 80% complete. The following features remain on the roadmap:
+This library is approximately 90% complete. The following features remain on the roadmap:
 
 - The reverse operation to `crystallize()` (probably `crystallize.smash()`)
-- Phrase-based excludes
 - How to not over-reverse when reversing, for values that are objects.
 - Upload it to the npms
 
@@ -63,7 +62,7 @@ Returns the nested version of `flatObject`. Pass in an optional options object.
 String value that specifies the delimiter between words. `'_'` and `'.'` are common. ~~Multi-character delimiters like `'__'` (double underscore) are allowed as well.~~ To delimit by PascalCase/camelCase, supply either `'pascalcase'` or `'camelcase'`. (default: `'_'`)
 
 - **excludes**  
-Array of prefix words excluded from factorization. One common example is 'is'. See example below. ~~For excluded *phrases*, either supply the phrase in the appropriate delimitation standard (e.g. `'stateOf'` when delimiter is `'camelCase'`), or supply the phrase an array of words (e.g. `['state', 'of']`, has the advantage of being delimiter-agnostic).~~ Excludes only apply if they are the first word of keys of the tree / one of its subtrees. (default: `[]`)
+Array of prefix words excluded from crystallizing. One common example is 'is'. See example below. For excluded *phrases*, either supply the phrase in the appropriate delimitation standard (e.g. `'stateOf'` when delimiter is `'camelCase'`), or supply the phrase an array of words (e.g. `['state', 'of']`, has the advantage of being delimiter-agnostic). (default: `[]`)
 
 ### Example of Exclusion
 
@@ -80,7 +79,7 @@ var data = {
 }
 
 // Exclusion example.
-var result = factorize(data, {excludes: ['is']})
+var result = crystallize(data, {excludes: ['is']})
 
 /*
 Result:
@@ -100,12 +99,10 @@ Result:
 }
 */
 
-/* This section not implemented yet. Imagine strikethroughs.
 // Exclusion of phrases.
-factorize(data, {exclude: ['is', 'has', 'state_of']}); // Assuming '_' delimiter.
-factorize(data, {exclude: ['is', 'has', 'stateOf']}); // Assuming camelCase delimiter.
-factorize(data, {exclude: ['is', 'has', ['state', 'of']]});
-*/
+crystallize(data, {exclude: ['is', 'has', 'state_of']}); // Assuming '_' delimiter.
+crystallize(data, {exclude: ['is', 'has', 'stateOf']}); // Assuming camelCase delimiter.
+crystallize(data, {exclude: ['is', 'has', ['state', 'of']]});
 ```
 
 ## Example Use Cases

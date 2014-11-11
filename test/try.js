@@ -17,10 +17,12 @@ tests.push({
   fully_consumed_sidekick: 1,
   fully_consumed_butler: 2,
   is_live: true,
-  is_public: true
+  is_public: true,
+  phrase_excluded_yaba: [1],
+  phrase_excluded_daba: [2]
 });
 
 tests.forEach(function (test) {
-  var result = crystallize(test, {excludes: ['is']});
+  var result = crystallize(test, {excludes: ['is', ['phrase', 'excluded']]});
   console.log(result);
 });

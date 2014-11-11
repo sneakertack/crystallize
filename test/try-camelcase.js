@@ -17,10 +17,12 @@ tests.push({
   fullyConsumedSidekick: 1,
   fullyConsumedButler: 2,
   isLive: true,
-  isPublic: true
+  isPublic: true,
+  phraseExcludedYaba: [1],
+  phraseExcludedDaba: [2]
 });
 
 tests.forEach(function (test) {
-  var result = crystallize(test, {excludes: ['is'], delimiter: 'camelCase'}); // delimiter can be 'camelcase' or 'camelCase'. It's case-insensitive.
+  var result = crystallize(test, {excludes: ['is', 'phraseExcluded'], delimiter: 'camelCase'}); // delimiter can be 'camelcase' or 'camelCase'. It's case-insensitive.
   console.log(result);
 });

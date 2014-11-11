@@ -1,6 +1,6 @@
 {
   "name": "crystallize",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Turn a flat object into a nested tree-like one, based on matching prefixes amongst its keys.",
   "main": "index.js",
   "scripts": {
