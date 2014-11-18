@@ -1,12 +1,15 @@
 `crystallize()` turns a flat data object into a nested, tree-like object. Keys get automatically grouped together if they share matching prefixes.
 
+`crystallize()` provides 1 way to store JSON-like data in a flat memory structure (e.g. relational tables, CSV). Upon reading from memory, `crystallize()` deserializes your flat record into a structured object. 
+
 ## Status
 
 This library is approximately 90% complete. The following features remain on the roadmap:
 
-- The reverse operation to `crystallize()` (probably `crystallize.smash()`)
+- The reverse (serializing) operation to `crystallize()` (probably `crystallize.smash()`)
 - How to not over-reverse when reversing, for values that are objects.
-- Upload it to the npms
+
+However, a good serializing substitute for now is [flat](https://github.com/hughsk/flat).
 
 Strikethroughed lines below describe features that are planned but not yet implemented. Everything else works.
 
@@ -104,10 +107,6 @@ crystallize(data, {exclude: ['is', 'has', 'state_of']}); // Assuming '_' delimit
 crystallize(data, {exclude: ['is', 'has', 'stateOf']}); // Assuming camelCase delimiter.
 crystallize(data, {exclude: ['is', 'has', ['state', 'of']]});
 ```
-
-## Example Use Cases
-
-- Build your own Object Relational Mapper: Turn flat data from relational database tables into a nested form more appropriate for JS use. (caveat: may conflict if some of your relational table fields store JSON objects)
 
 ## Library Edge Cases
 
